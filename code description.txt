@@ -1,0 +1,53 @@
+ZT-11 Question Answering Chatbot using Transformers:
+
+This code implements a transformer-based Question Answering (QA) chatbot system that allows users to interact with it via a graphical interface to ask questions related to the content of a predefined document. The system utilizes the transformers library, integrating a pre-trained DistilBERT model for Natural Language Processing tasks. The chatbot provides contextual answers to user questions and supports basic conversational interactions.
+
+Key Components
+
+1. Model Setup:
+Pre-trained Model: The DistilBERT model distilbert-base-cased-distilled-squad, fine-tuned for question answering on the SQuAD dataset, is used.
+Tokenizer: The DistilBertTokenizer encodes user questions and the context into a format suitable for model input.
+Model Loading: The pre-trained DistilBertForQuestionAnswering is loaded to perform start and end span prediction tasks.
+
+2. Question Answering Function:
+Function: answer_question takes a question and a context string as inputs.
+Process:
+Encodes the question and context into token IDs using the tokenizer.
+Feeds the tokenized data to the model for inference.
+Extracts the start and end logits from the model output to identify the span of text in the context that answers the question.
+Decodes the predicted token IDs back to human-readable text.
+Output: Returns the extracted answer.
+
+3. Context Loading:
+The code reads a text file (company xyz.txt) containing the context information about "company xyz mattresses." This context is used to answer user queries.
+
+4. Chatbot Logic:
+Function: chatbot_response processes user inputs to simulate conversational behavior.
+Predefined Responses:
+Greetings like "hello" and "hi" prompt a welcome message.
+Farewell phrases like "thank you" and "bye" prompt a polite closure message.
+QA Integration: For all other inputs, the function passes the user question and the document context to the answer_question function for generating responses.
+
+5. User Interface:
+Library: gradio is used to build a web-based graphical interface.
+Interface Components:
+Input: A text box where users can type their questions.
+Output: Text output displaying the chatbot's response.
+Interface Attributes:
+Title: "Question Answering Chatbot using Transformers."
+Description: A brief description of the chatbot's purpose.
+Theme: Customized using the "huggingface" theme.
+
+6. Application Launch:
+The Gradio interface is launched locally, allowing users to interact with the chatbot in real-time.
+
+User Flow:
+Input: Users ask a question about "company xyz mattresses" via the text input box.
+Processing:
+For casual greetings or farewells, predefined responses are returned.
+For questions, the system processes the input and uses the DistilBERT model to extract relevant answers from the loaded document context.
+Output: The chatbot displays the generated answer or predefined response to the user.
+
+
+Conclusion
+This code implements a simple yet effective QA chatbot that combines state-of-the-art NLP techniques with a user-friendly interface. It demonstrates the potential of transformer models like DistilBERT in creating responsive and accurate conversational systems for domain-specific applications such as customer support.
